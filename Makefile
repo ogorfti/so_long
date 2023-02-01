@@ -6,7 +6,7 @@
 #    By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 12:08:04 by ogorfti           #+#    #+#              #
-#    Updated: 2023/01/30 11:31:55 by ogorfti          ###   ########.fr        #
+#    Updated: 2023/02/01 23:27:27 by ogorfti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,10 @@ LIBP = ft_printf/libftprintf.a
 
 LIBT = libft/libft.a
 
+LMLX = -lmlx -framework OpenGL -framework AppKit
+
 SRCS_M = main.c get_next_line/get_next_line.c\
-		get_next_line/get_next_line_utils.c\
+		get_next_line/get_next_line_utils.c check_map.c check_path.c\
 
 OBJS_M = $(SRCS_M:.c=.o)
 
@@ -33,11 +35,14 @@ GREEN = \033[1;32m
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJS_M)
+		@echo "\033[36mMaking So Long...\033[0m"
 		@make -C ft_printf
 		@make -C libft
-		@$(CC) $(CFLAGS) $(OBJS_M) $(LIBP) $(LIBT) -o $(NAME)
+		@$(CC) $(CFLAGS) $(OBJS_M) $(LIBP) $(LIBT) $(LMLX) -o $(NAME)
+		@echo "\033[1;32mDONE!\033[0m"
 
 all : $(NAME)
+		@echo "$(GREEN)DONE!"
 
 clean :
 		@make clean -C ft_printf
@@ -47,7 +52,8 @@ clean :
 fclean : clean
 		@make fclean -C ft_printf
 		@make fclean -C libft
+		@echo "\033[36mCleaning So_Long....\033[0m"
 		@$(RM) $(NAME)
-		@echo "$(GREEN)DONE!"
+		@echo "\033[1;32mDONE!\033[0m"
 
 re : fclean all

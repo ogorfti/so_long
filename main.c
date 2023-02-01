@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 11:30:02 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/01/30 19:07:31 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/01 23:37:56 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,44 +72,7 @@ void	allocate_map(char *av, t_map *map)
 	map->map[i] = 0;
 }
 
-void	wall_error(void)
-{
-	printf ("Invalid Wall!\n");
-	exit (1);
-}
-
-void	check_walls(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (map->map[0][i] != '\n')
-	{
-		if (map->map[0][i] != '1')
-			wall_error();
-		if (map->map[map->rows - 1][i] != '1')
-			wall_error();
-		if (i < 5)
-		{
-			if (map->map[i][0] != '1')
-				wall_error();
-			if (map->map[i][map->columns - 1] != '1')
-				wall_error();
-		}
-		i++;
-	}
-}
-
-void	cpe_error(t_cpe *cpe, int x)
-{
-	if (cpe->c < 1 || cpe->e != 1 || cpe->p != 1 || x == -1)
-	{
-		printf ("Invalid CPE!\n");
-		exit (1);
-	}
-}
-
-void	check_cpe(t_map *map, t_cpe *cpe)
+void	assests_norm(t_map *map)
 {
 	int	i;
 	int	j;
@@ -121,136 +84,49 @@ void	check_cpe(t_map *map, t_cpe *cpe)
 		j = 0;
 		while (j < map->columns)
 		{
-			if (map->map[i][j] != 'C' && map->map[i][j] != 'P'
-				&& map->map[i][j] != 'E' && map->map[i][j] != '0'
-				&& map->map[i][j] != '1' && map->map[i][j] != '\n')
-				cpe_error(cpe, -1);
-			if (map->map[i][j] == 'C')
-				cpe->c++;
+			if (map->map[i][j] == '1')
+				mlx_put_image_to_window(map->mlx,
+					map->win, map->w.img, j * 50, i * 50);
 			if (map->map[i][j] == 'P')
-				cpe->p++;
+				mlx_put_image_to_window(map->mlx,
+					map->win, map->p.img, j * 50, i * 50);
+			if (map->map[i][j] == '0')
+				mlx_put_image_to_window(map->mlx,
+					map->win, map->b.img, j * 50, i * 50);
+			if (map->map[i][j] == 'C')
+				mlx_put_image_to_window(map->mlx,
+					map->win, map->c.img, j * 50, i * 50);
 			if (map->map[i][j] == 'E')
-				cpe->e++;
-			j++;
-		}
-		i++;
-	}
-	cpe_error(cpe, 0);
-}
-
-void	check_length(t_map *map)
-{
-	size_t	len;
-	int		i;
-
-	i = 0;
-	len = ft_strlen(map->map[i]);
-	while (i < map->rows)
-	{
-		if (len != ft_strlen(map->map[i]))
-		{
-			printf ("Invalid length!\n");
-			exit (1);
-		}
-		i++;
-	}
-}
-
-int	fill_path(char **path, int i, int j, int checker)
-{
-	if (path[i][j + 1] != '1' && path[i][j + 1] != 'P')
-	{
-		path[i][j + 1] = 'P';
-		checker = 1;
-	}
-	if (path[i][j - 1] != '1' && path[i][j - 1] != 'P')
-	{
-		path[i][j - 1] = 'P';
-		checker = 1;
-	}
-	if (path[i - 1][j] != '1' && path[i - 1][j] != 'P')
-	{
-		path[i - 1][j] = 'P';
-		checker = 1;
-	}
-	if (path[i + 1][j] != '1' && path[i + 1][j] != 'P')
-	{
-		path[i + 1][j] = 'P';
-		checker = 1;
-	}
-	return (checker);
-}
-
-void	path_error(char **path, int rows, int columns)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < rows)
-	{
-		j = 0;
-		while (j < columns)
-		{
-			if (path[i][j] == 'C' || path[i][j] == 'E')
-			{
-				printf ("Invalid path!\n");
-				exit (1);
-			}
+				mlx_put_image_to_window(map->mlx,
+					map->win, map->e.img, j * 50, i * 50);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	path_norm(char **path, t_map *map)
+void	put_assests(t_map *map)
 {
-	int	checker;
-	int	i;
-	int	j;
-
-	j = 0;
-	i = 0;
-	checker = 1;
-	while (checker == 1)
-	{
-		i = 0;
-		checker = 0;
-		while (i < map->rows)
-		{
-			j = 0;
-			while (j < map->columns)
-			{
-				if (path[i][j] == 'P')
-					checker = fill_path(path, i, j, checker);
-				j++;
-			}
-			i++;
-		}
-	}
-}
-
-void	check_path(t_map *map)
-{
-	char	**path;
-	int		i;
-
-	i = 0;
-	path = malloc (sizeof(char *) * map->rows + 1);
-	while (map->map[i])
-	{
-		path[i] = map->map[i];
-		i++;
-	}
-	path[i] = 0;
-	path_norm(path, map);
-	path_error(path, map->rows, map->columns);
+	map->mlx = mlx_init();
+	map->w.img = mlx_xpm_file_to_image(map->mlx, "sprites/w.xpm",
+			&map->w.img_width, &map->w.img_height);
+	map->p.img = mlx_xpm_file_to_image(map->mlx, "sprites/p.xpm",
+			&map->p.img_width, &map->p.img_height);
+	map->b.img = mlx_xpm_file_to_image(map->mlx, "sprites/b.xpm",
+			&map->b.img_width, &map->b.img_height);
+	map->c.img = mlx_xpm_file_to_image(map->mlx, "sprites/c.xpm",
+			&map->c.img_width, &map->c.img_height);
+	map->e.img = mlx_xpm_file_to_image(map->mlx, "sprites/e.xpm",
+			&map->e.img_width, &map->e.img_height);
+	map->win = mlx_new_window(map->mlx, map->columns * 50,
+			map->rows * 50, "So Long");
+	assests_norm(map);
+	mlx_loop(map->mlx);
 }
 
 int	main(int ac, char **av)
 {
 	t_map	map;
-	t_cpe	cpe;
 
 	if (ac == 2)
 	{
@@ -262,14 +138,12 @@ int	main(int ac, char **av)
 		else
 		{
 			allocate_map(av[1], &map);
-			check_length(&map);
-			check_walls(&map);
-			check_cpe(&map, &cpe);
+			check_map(&map);
 			check_path(&map);
+			put_assests(&map);
 		}
 	}
 	else
 		ft_printf("Invalid number of arguments!\n");
-	ft_printf("Valid Map\n");
 	return (0);
 }
