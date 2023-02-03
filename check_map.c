@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 23:01:35 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/01 23:32:21 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/03 20:15:45 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ void	cpe_error(t_cpe *cpe, int x)
 	}
 }
 
-void	check_cpe(t_map *map, t_cpe *cpe)
+void	check_cpe(t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	cpe->c = 0;
-	cpe->p = 0;
-	cpe->e = 0;
+	map->cpe.c = 0;
+	map->cpe.p = 0;
+	map->cpe.e = 0;
 	while (i < map->rows)
 	{
 		j = 0;
@@ -57,18 +57,18 @@ void	check_cpe(t_map *map, t_cpe *cpe)
 			if (map->map[i][j] != 'C' && map->map[i][j] != 'P'
 				&& map->map[i][j] != 'E' && map->map[i][j] != '0'
 				&& map->map[i][j] != '1' && map->map[i][j] != '\n')
-				cpe_error(cpe, -1);
+				cpe_error(&map->cpe, -1);
 			if (map->map[i][j] == 'C')
-				cpe->c++;
+				map->cpe.c++;
 			if (map->map[i][j] == 'P')
-				cpe->p++;
+				map->cpe.p++;
 			if (map->map[i][j] == 'E')
-				cpe->e++;
+				map->cpe.e++;
 			j++;
 		}
 		i++;
 	}
-	cpe_error(cpe, 0);
+	cpe_error(&map->cpe, 0);
 }
 
 void	wall_error(void)
@@ -101,9 +101,9 @@ void	check_walls(t_map *map)
 
 void	check_map(t_map *map)
 {
-	t_cpe	cpe;
+	//t_cpe	cpe;
 
 	check_walls(map);
 	check_length(map);
-	check_cpe(map, &cpe);
+	check_cpe(map);
 }
