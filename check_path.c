@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 23:24:29 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/01 23:26:43 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/04 18:13:50 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,5 @@ void	check_path(t_map *map)
 	path[i] = 0;
 	path_norm(path, map);
 	path_error(path, map->rows, map->columns);
+	free_map(path);
 }

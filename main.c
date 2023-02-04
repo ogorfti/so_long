@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 11:30:02 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/03 21:50:59 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/04 18:57:10 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,36 @@ void	allocate_map(char *av, t_map *map)
 	if (fd1 < 0 || fd2 < 0)
 		exit (0);
 	line = get_next_line(fd1);
+	if (!line)
+	{
+		ft_printf("khawya\n");
+		exit (1);
+	}
 	map->columns = ft_strlen(line) - 1;
+	free (line);
+		
 	map->rows = 1;
+	while (1)
+	{
+		line = get_next_line(fd1);
+		if (!line)
+			break;
+		free (line);
+		map->rows++;
+	}
 	while (get_next_line(fd1))
 		map->rows++;
 	map->map = malloc(sizeof(char *) * map->rows + 1);
 	while (i < map->rows)
 	{
 		map->map[i] = get_next_line(fd2);
+		//printf("%p\n", map->map[i]);
 		i++;
 	}
-	map->map[i - 1] = ft_strjoin(map->map[i - 1], "\n");
+
+	map->map[i - 1] = ft_strjoin1(map->map[i - 1], "\n");
 	map->map[i] = 0;
+	// while (1);
 }
 
 void	assests_norm(t_map *map)
@@ -341,6 +359,7 @@ int	main(int ac, char **av)
 			put_assests(&map);
 			handle_keys(&map);
 			mlx_loop(map.mlx);
+			//while (1);
 		}
 	}
 	else

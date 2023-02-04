@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 11:32:56 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/03 20:05:15 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/04 18:13:38 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ typedef struct s_map
 
 void	check_map(t_map *map);
 void	check_path(t_map *map);
+void	free_map(char **map);
 
 #endif
