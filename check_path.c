@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 23:24:29 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/04 18:13:50 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/09 23:07:39 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,21 @@ int	fill_path(char **path, int i, int j, int checker)
 	return (checker);
 }
 
-void	path_error(char **path, int rows, int columns)
+void	path_error(char **path, t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < rows)
+	while (i < map->rows)
 	{
 		j = 0;
-		while (j < columns)
+		while (j < map->columns)
 		{
 			if (path[i][j] == 'C' || path[i][j] == 'E')
 			{
-				printf ("Invalid path!\n");
+				ft_printf ("Invalid path!\n");
+				free (map->map);
 				exit (1);
 			}
 			j++;
@@ -108,6 +109,6 @@ void	check_path(t_map *map)
 	}
 	path[i] = 0;
 	path_norm(path, map);
-	path_error(path, map->rows, map->columns);
+	path_error(path, map);
 	free_map(path);
 }

@@ -6,7 +6,7 @@
 #    By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 12:08:04 by ogorfti           #+#    #+#              #
-#    Updated: 2023/02/01 23:27:27 by ogorfti          ###   ########.fr        #
+#    Updated: 2023/02/09 22:09:28 by ogorfti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ LMLX = -lmlx -framework OpenGL -framework AppKit
 
 SRCS_M = main.c get_next_line/get_next_line.c\
 		get_next_line/get_next_line_utils.c check_map.c check_path.c\
+		allocate_map.c init_assests.c handle_keys.c handle_keys_utils.c\
+		check_map_utils.c\
 
 OBJS_M = $(SRCS_M:.c=.o)
 
