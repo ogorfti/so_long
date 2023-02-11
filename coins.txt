@@ -1,5 +1,0 @@
-c0.xpm
-c1.xpm
-c2.xpm
-c3.xpm
-c4.xpm

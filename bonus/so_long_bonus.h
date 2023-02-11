@@ -6,11 +6,11 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 16:46:53 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/11 15:33:31 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/11 23:49:57 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#   ifndef SO_LONG_BONUS_H
+#	ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
 # include "../get_next_line/get_next_line.h"
@@ -25,6 +25,13 @@ typedef struct s_img
 	int		img_height;
 }	t_img;
 
+typedef struct s_coins
+{
+	void	*img[6];
+	int		img_width;
+	int		img_height;
+}	t_coins;
+
 typedef struct s_cpex
 {
 	int	c;
@@ -37,6 +44,7 @@ typedef struct s_map
 {
 	t_cpex	cpex;
 	char	**map;
+	char	**coins;
 	int		rows;
 	int		columns;
 	int		ppos_x;
@@ -51,6 +59,7 @@ typedef struct s_map
 	t_img	c;
 	t_img	e;
 	t_img	x;
+	t_coins	anim;
 }			t_map;
 
 void	allocate_map(char *av, t_map *map);

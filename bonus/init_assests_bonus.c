@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 19:35:30 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/11 15:40:40 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/11 23:45:39 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ void	help_assests(t_map *map, int i, int j)
 		map->ppos_x = i;
 		map->ppos_y = j;
 	}
-	if (map->map[i][j] == 'C')
-		mlx_put_image_to_window(map->mlx,
-			map->win, map->c.img, j * 50, i * 50);
 	if (map->map[i][j] == 'E')
 	{
 		mlx_put_image_to_window(map->mlx,
@@ -90,8 +87,6 @@ void	put_assests(t_map *map)
 			&map->p.img_width, &map->p.img_height);
 	map->b.img = mlx_xpm_file_to_image(map->mlx, "textures/b.xpm",
 			&map->b.img_width, &map->b.img_height);
-	map->c.img = mlx_xpm_file_to_image(map->mlx, "textures/c0.xpm",
-			&map->c.img_width, &map->c.img_height);
 	map->e.img = mlx_xpm_file_to_image(map->mlx, "textures/e.xpm",
 			&map->e.img_width, &map->e.img_height);
 	map->x.img = mlx_xpm_file_to_image(map->mlx, "textures/x.xpm",
