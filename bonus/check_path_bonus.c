@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_path.c                                       :+:      :+:    :+:   */
+/*   check_path_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 23:24:29 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/09 23:07:39 by ogorfti          ###   ########.fr       */
+/*   Created: 2023/02/10 18:26:39 by ogorfti           #+#    #+#             */
+/*   Updated: 2023/02/10 18:30:22 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	fill_path(char **path, int i, int j, int checker)
 {
-	if (path[i][j + 1] != '1' && path[i][j + 1] != 'P')
+	if (path[i][j + 1] != '1' && path[i][j + 1] != 'P' && path[i][j + 1] != 'X')
 	{
 		path[i][j + 1] = 'P';
 		checker = 1;
 	}
-	if (path[i][j - 1] != '1' && path[i][j - 1] != 'P')
+	if (path[i][j - 1] != '1' && path[i][j - 1] != 'P' && path[i][j - 1] != 'X')
 	{
 		path[i][j - 1] = 'P';
 		checker = 1;
 	}
-	if (path[i - 1][j] != '1' && path[i - 1][j] != 'P')
+	if (path[i - 1][j] != '1' && path[i - 1][j] != 'P' && path[i - 1][j] != 'X')
 	{
 		path[i - 1][j] = 'P';
 		checker = 1;
 	}
-	if (path[i + 1][j] != '1' && path[i + 1][j] != 'P')
+	if (path[i + 1][j] != '1' && path[i + 1][j] != 'P' && path[i + 1][j] != 'X')
 	{
 		path[i + 1][j] = 'P';
 		checker = 1;

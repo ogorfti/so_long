@@ -6,24 +6,11 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 11:30:02 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/09 23:07:11 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/10 16:44:28 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free (map[i]);
-		i++;
-	}
-	free (map);
-}
 
 void	display_map(char **map)
 {

@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:54:12 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/09 23:29:13 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/10 21:42:07 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,10 @@ int	key_callback(int key, void *param)
 	map = (t_map *)param;
 	map->check = 0;
 	if (key == 53)
+	{
+		free_2d(map, -1);
 		exit(0);
-	map->p_d.img = mlx_xpm_file_to_image(map->mlx, "textures/p_d.xpm",
-			&map->p_d.img_width, &map->p_d.img_height);
-	map->p_a.img = mlx_xpm_file_to_image(map->mlx, "textures/p_a.xpm",
-			&map->p_a.img_width, &map->p_a.img_height);
-	map->p_w.img = mlx_xpm_file_to_image(map->mlx, "textures/p_w.xpm",
-			&map->p_w.img_width, &map->p_w.img_height);
+	}
 	if (key == 126)
 		handle_move(map, 1, 0, map->p_w.img);
 	if (key == 125)
@@ -95,6 +92,7 @@ int	key_callback(int key, void *param)
 
 void	handle_keys(t_map *map)
 {
-	mlx_key_hook(map->win, key_callback, (void *)map);
+	init_xpm(map);
+	mlx_hook(map->win, 2, 0, key_callback, (void *)map);
 	mlx_hook(map->win, 17, 0, close_window, (void *)map);
 }

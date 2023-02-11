@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 11:32:56 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/09 23:06:50 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/10 16:45:12 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define SO_LONG_H
 
 # include <mlx.h>
-# include "get_next_line/get_next_line.h"
-# include "ft_printf/ft_printf.h"
-# include "libft/libft.h"
+# include "../get_next_line/get_next_line.h"
+# include "../ft_printf/ft_printf.h"
+# include "../libft/libft.h"
 
 typedef struct s_img
 {
@@ -73,5 +73,7 @@ int		close_window(void *param);
 void	winner_msg(char c, t_map *map);
 void	write_pm(t_map *map, int a, int b, int *nbr);
 void	check_walls(t_map *map);
+void	free_2d(t_map *map, int x);
+void	init_xpm(t_map *map);
 
 #endif
