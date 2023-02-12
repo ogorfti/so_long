@@ -6,13 +6,13 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 19:35:30 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/11 23:45:39 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/12 22:37:19 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	help_assests(t_map *map, int i, int j)
+void	help_assests(t_map *map, int i, int j, int *nbrx)
 {
 	if (map->map[i][j] == '1')
 		mlx_put_image_to_window(map->mlx,
@@ -32,8 +32,11 @@ void	help_assests(t_map *map, int i, int j)
 		map->epos_y = j;
 	}	
 	if (map->map[i][j] == 'X')
+	{
 		mlx_put_image_to_window(map->mlx,
 			map->win, map->x.img, j * 50, i * 50);
+		(*nbrx)++;
+	}
 }
 
 void	assests_norm(t_map *map)
@@ -43,16 +46,17 @@ void	assests_norm(t_map *map)
 
 	i = 0;
 	j = 0;
+	map->nbrx = 0;
 	while (i < map->rows)
 	{
 		j = 0;
 		while (j < map->columns)
 		{
-			help_assests(map, i, j);
+			help_assests(map, i, j, &map->nbrx);
 			j++;
 		}
 		i++;
-	}
+	}	
 }
 
 void	put_floor(t_map *map)

@@ -1,0 +1,6 @@
+textures/c0.xpm
+textures/c1.xpm
+textures/c2.xpm
+textures/c3.xpm
+textures/c4.xpm
+textures/c5.xpm
