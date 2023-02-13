@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:50:18 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/10 18:24:55 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:30:37 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	check_length(t_map *map)
 		if (len != ft_strlen(map->map[i]))
 		{
 			ft_printf ("Invalid length!\n");
+			free_map (map->map);
 			exit (1);
 		}
 		i++;

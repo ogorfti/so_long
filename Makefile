@@ -6,7 +6,7 @@
 #    By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 12:08:04 by ogorfti           #+#    #+#              #
-#    Updated: 2023/02/12 12:14:32 by ogorfti          ###   ########.fr        #
+#    Updated: 2023/02/13 17:01:25 by ogorfti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ LIBFT = libft/libft.a
 
 LMLX = -lmlx -framework OpenGL -framework AppKit
 
+##-lmlx -lXext -lX11 
+
 SRCS_M = mandatory/main.c get_next_line/get_next_line.c\
 		get_next_line/get_next_line_utils.c mandatory/check_map.c mandatory/check_path.c\
 		mandatory/allocate_map.c mandatory/init_assests.c mandatory/handle_keys.c\
@@ -28,7 +30,8 @@ SRCS_M = mandatory/main.c get_next_line/get_next_line.c\
 SRCS_B = bonus/main_bonus.c bonus/allocate_map_bonus.c get_next_line/get_next_line.c\
 		get_next_line/get_next_line_utils.c bonus/check_map_bonus.c\
 		bonus/check_map_bonus_utils.c bonus/free_bonus.c bonus/check_path_bonus.c\
-		bonus/init_assests_bonus.c bonus/handle_keys_bonus.c\
+		bonus/init_assests_bonus.c bonus/handle_keys_bonus.c bonus/move_enemies.c\
+		bonus/move_enemies_utils.c bonus/handle_keys_bonus_utils.c\
 
 OBJS_M = $(SRCS_M:.c=.o)
 

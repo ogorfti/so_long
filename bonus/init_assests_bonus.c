@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 19:35:30 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/12 22:37:19 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:21:46 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,12 @@ void	put_assests(t_map *map)
 			&map->x.img_width, &map->x.img_height);
 	map->win = mlx_new_window(map->mlx, map->columns * 50,
 			map->rows * 50, "So Long");
+	if (!map->w.img || !map->p.img || !map->b.img || !map->e.img || !map->x.img)
+	{
+		ft_printf ("Invalid XPM file!\n");
+		free_map (map->map);
+		exit(1);
+	}
 	put_floor(map);
 	assests_norm(map);
 }

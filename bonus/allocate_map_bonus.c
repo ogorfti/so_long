@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:39:34 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/10 17:43:10 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:34:32 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	invalid_msg(void)
 	exit (1);
 }
 
-void	check_display(int rows, int columns)
+void	check_display(t_map *map, int rows, int columns)
 {
 	if (rows > 28 || columns > 51)
 	{
 		ft_printf("Invalid Map Size!\n");
+		free_map (map->map);
 		exit (1);
 	}	
 }
@@ -53,5 +54,5 @@ void	allocate_map(char *av, t_map *map)
 	map->map = ft_split(joiner, ' ');
 	free (joiner);
 	map->columns = ft_strlen1(map->map[0]) - 1;
-	check_display(map->rows, map->columns);
+	check_display(map, map->rows, map->columns);
 }

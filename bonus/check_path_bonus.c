@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:26:39 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/10 18:30:22 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:29:39 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,24 +90,27 @@ void	path_norm(char **path, t_map *map)
 void	check_path(t_map *map)
 {
 	char	**path;
-	int		i;
-	int		j;
 
-	i = 0;
+	map->idx.i = 0;
 	path = malloc (sizeof(char *) * map->rows + 1);
-	while (map->map[i])
+	if (!path)
 	{
-		j = 0;
-		path[i] = malloc(sizeof(char) * map->columns + 1);
-		while (map->map[i][j])
-		{
-			path[i][j] = map->map[i][j];
-			j++;
-		}
-		path[i][j] = '\0';
-		i++;
+		free_map (map->map);
+		exit (1);
 	}
-	path[i] = 0;
+	while (map->map[map->idx.i])
+	{
+		map->idx.j = 0;
+		path[map->idx.i] = malloc(sizeof(char) * map->columns + 1);
+		while (map->map[map->idx.i][map->idx.j])
+		{
+			path[map->idx.i][map->idx.j] = map->map[map->idx.i][map->idx.j];
+			map->idx.j++;
+		}
+		path[map->idx.i][map->idx.j] = '\0';
+		map->idx.i++;
+	}
+	path[map->idx.i] = 0;
 	path_norm(path, map);
 	path_error(path, map);
 	free_map(path);

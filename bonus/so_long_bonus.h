@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 16:46:53 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/12 22:49:45 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:26:33 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <mlx.h>
+
+typedef struct s_idx
+{
+	int	i;
+	int	j;
+	int	k;
+}	t_idx;
 
 typedef struct s_img
 {
@@ -36,7 +43,7 @@ typedef struct s_coins
 typedef struct s_enemy
 {
 	int	x;
-	int y;
+	int	y;
 }	t_enemy;
 
 typedef struct s_cpex
@@ -75,6 +82,9 @@ typedef struct s_map
 	int		check;
 	int		nbrx;
 	t_enemy	*enemies;
+	int		new_x;
+	int		new_y;
+	t_idx	idx;
 }			t_map;
 
 void	allocate_map(char *av, t_map *map);
@@ -85,5 +95,19 @@ void	check_path(t_map *map);
 void	put_assests(t_map *map);
 void	handle_keys(t_map *map);
 void	free_2d(t_map *map, int x);
+int		handle_animation(t_map *map);
+void	get_name(t_map *map);
+void	init_coins(t_map *map);
+void	position_of_enemies(t_map *map);
+int		check_move(t_map *map, int new_x, int new_y, int a);
+int		check_lose(t_map *map);
+int		close_window(void *param);
+void	fbi_open_up(t_map *map);
+void	write_pm(t_map *map, int a, int b, int *nbr);
+void	winner_msg(char c, t_map *map);
+void	init_xpm(t_map *map);
+int		check_open_door(t_map *map);
+void	free_all(t_map *map, int x, int e);
+void	free_coins(t_map *map);
 
 #endif

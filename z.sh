@@ -1,7 +1,7 @@
 make fclean
 make bonus
 make clean
-./so_long_bonus maps/map.ber
+./so_long_bonus maps/map_bonus.ber
 
 # // void	get_name(t_map *map)
 # //{
