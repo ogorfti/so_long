@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:02:09 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/13 16:37:46 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/13 17:33:41 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,16 @@ void	winner_msg(char c, t_map *map)
 
 void	write_pm(t_map *map, int a, int b, int *nbr)
 {
+	char	*str;
+
 	map->check = 0;
 	(*nbr)++;
+	str = ft_itoa(*nbr);
 	mlx_put_image_to_window(map->mlx, map->win, map->w.img,
 		(map->columns * 50) - 100, 0);
 	mlx_string_put (map->mlx, map->win,
-		(map->columns * 50) - 82, 15, 0x000000, ft_itoa(*nbr));
+		(map->columns * 50) - 82, 15, 0x000000, str);
+	free (str);
 	if (b == 0)
 		map->ppos_x = map->ppos_x - a;
 	else
