@@ -6,7 +6,7 @@
 #    By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 12:08:04 by ogorfti           #+#    #+#              #
-#    Updated: 2023/02/13 17:01:25 by ogorfti          ###   ########.fr        #
+#    Updated: 2023/02/13 20:07:27 by ogorfti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,6 @@ LIBP = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
 
 LMLX = -lmlx -framework OpenGL -framework AppKit
-
-##-lmlx -lXext -lX11 
 
 SRCS_M = mandatory/main.c get_next_line/get_next_line.c\
 		get_next_line/get_next_line_utils.c mandatory/check_map.c mandatory/check_path.c\
@@ -45,6 +43,20 @@ RM = rm -f
 
 GREEN = \033[1;32m
 
+define SO_LONG
+
+ ▄█▀▀▀█▄█            ▀████▀
+▄██    ▀█              ██
+▀███▄     ▄██▀██▄      ██       ▄██▀██▄▀████████▄  ▄█▀█████
+  ▀█████▄██▀   ▀██     ██      ██▀   ▀██ ██    ██ ▄██  ██
+▄     ▀████     ██     ██     ▄██     ██ ██    ██ ▀█████▀
+██     ████▄   ▄██     ██    ▄███▄   ▄██ ██    ██ ██
+█▀█████▀  ▀█████▀    ██████████ ▀█████▀▄████  ████▄███████
+                                                  █▀     ██
+                                                  ██████▀
+endef
+export SO_LONG
+
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
@@ -53,6 +65,7 @@ all : $(NAME)
 bonus : $(NAME_BONUS)
 
 $(NAME) : $(OBJS_M)
+		@echo "\033[33m$$SO_LONG"
 		@echo "\033[36mMaking So Long...\033[0m"
 		@make -C ft_printf
 		@make -C libft
@@ -60,6 +73,7 @@ $(NAME) : $(OBJS_M)
 		@echo "\033[1;32mDONE!\033[0m"
 
 $(NAME_BONUS) : $(OBJS_B)
+		@echo "\033[33m$$SO_LONG"
 		@echo "\033[36mMaking So Long Bonus...\033[0m"
 		@make -C ft_printf
 		@make -C libft
