@@ -6,24 +6,11 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 11:30:02 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/12 12:20:01 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/15 12:43:51 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	display_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	ft_printf("\tMAP\n");
-	while (map[i])
-	{
-		ft_printf("  %s", map[i]);
-		i++;
-	}
-}
 
 int	check_name(char *str)
 {

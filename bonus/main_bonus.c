@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 16:41:07 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/02/13 14:04:00 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/02/15 12:28:12 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_open_door(t_map *map)
 {
-	if (map->cpex.c == 0)
+	if (map->cpex.c <= 1)
 	{
 		if (map->new_x == map->epos_x && map->new_y == map->epos_y)
 			return (1);
