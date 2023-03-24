@@ -1,4 +1,4 @@
-Introduction:
+## **Introduction:**
 
 In this project, we have developed a 2D game that involves the player moving around, collecting coins and avoiding enemies. Our aim was to become proficient in utilizing the mlx library and UI in general.
 
