@@ -1,34 +1,99 @@
-## **Introduction:**
+<p align="center">
+	<b><i>This is my so_long project from the 42 cursus</i></b><br>
+</p>
 
-In this project, we have developed a 2D game that involves the player moving around, collecting coins and avoiding enemies. Our aim was to become proficient in utilizing the mlx library and UI in general.
+<div align="center">
+  <img src="https://media.giphy.com/media/11eCsAJh9HzeY8/giphy.gif" alt="animated" />
+</div>
 
-## **Game Rules:**
+## 🗣️ About
 
-Our game follows a set of specific rules. The executable 'game_name' will receive a map with a .ber filetype as its only argument. The map must meet the following requirements:
+> In this project, we'll code a simple 2D game to get familiar with the mlx library and UI in general.
 
-    The map must contain characters P (player), 1 (wall), 0 (empty space), C (coin), and E (exit). (Enemies can be added as a bonus.)
-    The map must be rectangular, i.e., all rows must have the same length.
-    There must be at least one exit, one player, and one coin on the map.
-    The map must be enclosed, i.e., surrounded by walls.
+### Maps
+The game is able to play any map you want as long as it follow some specific rules:
+* The map has to be a ``.ber`` file.
+* It can only contain some of the following characters:
 
-If any of these rules are violated, the game will end with an 'Error\n' message followed by a custom error message.
+| Character | Object |
+| - | - |
+| 1 | Wall. |
+| 0 | Empty space. |
+| C | Collectable. |
+| E | Exit. |
+| P | Player starting position. |
 
-The goal of the game is for the player to collect all the coins on the map before reaching the exit in the fewest possible steps.
+* The map must be a rectangle surrounded by walls ‘1’.
+* It must have at least one exit ‘E’ and one collectable ‘C’. And only one player ‘P’.
 
-## **How it Works:**
+### Controls
 
-We utilized the minilibx library for the graphics part of our game. It's a basic yet fun-to-use library.
+Use `WASD` to move. 
 
-## **Part 1: Reading the Map:**
+| Character | Move |
+| - | - |
+| W | UP |
+| S | DOWN |
+| D | RIGHT |
+| A | LEFT |
 
-We first checked that the given map was properly opened and that it had a .ber filetype. We then read the file one line at a time using get_next_line. During this process, we filled a struct with some basic map attributes such as the number of players, exits, coins, the number of rows and columns, etc. We also created a string containing the entire map, which was later useful when creating a matrix using ft_split, with '\n' as the separator.
+Enemies move after you and will kill you when you move into their tile or they move into yours. After picking up all collectibles, the exits open and you may leave the map.
 
-## **Part 2: Starting the Game:**
+You can exit the game with `esc` or by pressing the closing window botton.
 
-We took the struct from Part 1 and our map matrix to build the main game struct. This struct includes more detailed information about the game state, such as a list of players and enemies, the number of loop repetitions (frames), and other relevant information. From here, we initialized a window using the mlx function and started drawing the static elements of the map (walls, spaces, and coins) on the window. The mlx library has an infinite loop where the game events happen. From here, we check the state of the game to re-print certain elements of the map or to manage special events, such as when the player is caught by an enemy. The mlx library has hooks, which link certain events on the computer (keypresses, mouse clicks, etc.) with functions we implement. We hooked the end of the game function to pressing the 'x' button to close the window. We also used a key hook to link keypresses with the player's movements.
+### Execute the game
+To play you can use some of the makefile rules, or execute the file _so_long_ if it's been generated, passing the map you want to play as parameter (``./so_long map.ber``). The make file has the following rules:
 
-## **Part 3: Game Mechanics:**
+| Rule | Function |
+| - | - |
+| ``make`` | Generates _so_long_ and an object file for each .c. |
+| ``make clean`` | Deletes all object files. |
+| ``make fclean`` | Deletes the object files and the _so_long_. |
+| ``make re`` | makes ``fclean`` and ``make`` again. |
+| `` make play`` | Allows you to play all maps one at a time. To play the next map just press ``esc``. |
 
-The game ends when the 'ESC' or 'Q' key is pressed. If the arrow keys or 'W', 'A', 'S', 'D' keys are pressed, the player changes direction and tries to move in that direction. Also, every so often, all players will move forward in the direction they're headed. Enemies behave similarly, but instead of responding to the keypress, they use a basic algorithm to find the player and try to catch them. Whenever a player is caught by an enemy, the game ends, and the player dies with a short animation. To make the game more interesting, the enemies will enter panic mode when there are fewer enemies than players. This mode causes them to move in random directions for a brief period.
+### Installing the MLX library
 
-Lastly, if a player reaches the exit and there are no coins left, the player will be deleted from the list of players. If all players reach the exit, the game ends, and the final score is displayed
+* ``Linux``
+
+If you're not using a MacOS device from 42, you'll need to install the libraries manually. Please refer to the [official github](https://github.com/42Paris/minilibx-linux) for more details. To install it, do the following (requires root access):
+
+```shell
+git clone https://github.com/42Paris/minilibx-linux.git
+cd minilibx-linux/
+make
+sudo cp mlx.h /usr/include
+sudo cp libmlx.a /usr/lib
+```
+
+* ``MacOS``
+
+To install the library, you will need to first install a package manager like homebrew (check [here](https://brew.sh/)) to then install the X11 package with ``brew install Xquartz``. After that you must extract the minilibx file called ``minilibx_opengl.tgz``. then install it to your system with the following commands (requires sudo as well):
+
+```shell
+cd minilibx_opengl
+make
+sudo cp mlx.h /usr/local/include
+sudo cp libmlx.a /usr/local/lib
+sudo reboot
+```
+Note: A reboot is necessary to ensure that the ``Xquartz`` is working properly. You can test if it is by running a test example with the command ``xeyes``.
+
+### Installing the manuals
+
+If you want quick access to the mlx manuals, it is recommended that you copy the files from the ``man`` folder in [minilibx-linux](https://github.com/42Paris/minilibx-linux) to your system manuals:
+
+* ``Linux``
+```shell
+sudo cp man/man3/* /usr/share/man/man3/
+```
+Note: Depending on your Linux configuration, to get the manuals working (e.g. ``man mlx``) you will need to individually gzip all the manual files you just copied, e.g. ``sudo gzip /usr/share/man/man3/mlx.3``.
+
+* ``MacOS``
+```shell
+sudo cp man/man3/* /usr/X11/share/man/man3
+```
+
+### Gameplay
+
+![classic](https:)
