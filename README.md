@@ -96,4 +96,4 @@ sudo cp man/man3/* /usr/X11/share/man/man3
 
 ### Gameplay
 
-![classic](https:)
+<img src="https://media.giphy.com/media/KDK7O1xIqC9Zo6lg6X/giphy.gif">
