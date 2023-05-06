@@ -94,6 +94,6 @@ Note: Depending on your Linux configuration, to get the manuals working (e.g. ``
 sudo cp man/man3/* /usr/X11/share/man/man3
 ```
 
-### Gameplay
+## Gameplay
 
 <img src="https://media.giphy.com/media/KDK7O1xIqC9Zo6lg6X/giphy.gif">
